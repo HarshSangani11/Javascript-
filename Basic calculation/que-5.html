@@ -1,0 +1,37 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>First Number</h1>
+    <input type="text" id="in1">
+    <h1>Second Number</h1>
+    <input type="text" id="in2">
+    <h1>Third Number</h1>
+    <input type="text" id="in3">
+    <h1>Fourth Number</h1>
+    <input type="text" id="in4">
+     <h1>Fifth Number</h1>
+    <input type="text" id="in5">
+
+    <h1 id="ans">Answer</h1>
+</body>
+</html>
+<script>
+   
+let num1 = document.getElementById("in1").value
+let num2 = document.getElementById("in2").value
+let num3 = document.getElementById("in3").value
+let num4 = document.getElementById("in4").value
+let num5 = document.getElementById("in5").value
+
+
+let sum = +num1 + +num2 + +num3 + +num4 + +num5;
+document.getElementById("ans").innerHTML=sum*2
+console.log("Sum of the numbers:", sum);
+
+</script>
