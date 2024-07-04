@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Enter principal amount</h1>
+    <input type="text" id="in1">
+    <h1>Rate of intrest</h1>
+    <input type="text" id="in2">
+    <h1>Time</h1>
+    <input type="text" id="in3">
+
+    <h1 id="ans">Answer</h1>
+</body>
+</html>
+<script>
+    let num1 = document.getElementById("in1").value
+    let num2 = document.getElementById("in2").value
+    let num3 = document.getElementById("in3").value
+
+    let sum = num1 * num2 * num3;
+document.getElementById("ans").innerHTML=sum/100
+console.log("Sum of the numbers:", sum);
+</script>

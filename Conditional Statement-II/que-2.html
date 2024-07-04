@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Enter First Value</h1>
+    <input type="text" id="in1">
+
+    <h1>Enter Second Value</h1>
+    <input type="text" id="in2">
+
+    <h1>Enter Third Value</h1>
+    <input type="text" id="in3">
+
+    <h1>Enter Fourth Value</h1>
+    <input type="text" id="in4">
+
+    <h1>Enter Fifth Value</h1>
+    <input type="text" id="in5">
+
+
+    <h1 id="ans"></h1>
+</body>
+</html>
+
+<script>
+    let a = document.getElementById("in1").value
+    let b = document.getElementById("in2").value
+    let c = document.getElementById("in3").value
+    let d = document.getElementById("in4").value
+    let e = document.getElementById("in5").value
+
+    a = parseInt(a)
+    b = parseInt(b)
+    c = parseInt(c)
+    d = parseInt(d)
+    e = parseInt(e)
+
+    if(a == "" && b == "" && c == "" && d == "" && e == ""){
+        document.getElementById("ans").innerHTML = "Enter Value"
+    }
+    else{
+if (a >= b && a >= c && a >= d && a >= e) {
+    maxNumber = a;
+    console.log(a)
+} else if (b >= a && b >= c && b >= d && b >= e) {
+    maxNumber = b;
+    console.log(b)
+} else if (c >= a && c >= b && c >= d && c >= e) {
+    maxNumber = c;
+    console.log(c)
+} else if (d >= a && d >= b && d >= c && d >= e) {
+    maxNumber = d;
+    console.log(d)
+} else {
+    maxNumber = e;
+    console.log(e)
+}
+    
+    }
+</script>
