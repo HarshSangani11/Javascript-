@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question 7</title>
+</head>
+<body>
+    <center>
+    <h1>7. Using logical operators, write an expression that checks if both `x` and `y` are non-zero. Log "Both are non-zero" if true</h1>
+    <br><br>
+    <label for="">Enter x = <input type="text" id="x"></label>
+    <label for="">Enter y = <input type="text" id="y"></label>
+    </center>
+</body>
+</html>
+<script>
+    let x = document.getElementById("x").value
+let y = document.getElementById("y").value
+
+x = parseInt(x)
+y = parseInt(y)
+
+if (x !== 0 && y !== 0) 
+    {
+        console.log("Both are non-zero");
+    }
+    else 
+    {
+        console.log("Either x is zero or y is zero")
+    }
+
+</script>
