@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Question 3</title>
+</head>
+<body>
+    <center>
+        <h1>3. Write a JavaScript program to find the largest of three numbers using conditional statements.</h1>
+        <br><br>
+        <label for="">Enter First Number = <input type="text" id="num1"></label><br><br>
+        <label for="">Enter Second Number= <input type="text" id="num2"></label><br><br>
+        <label for="">Enter Third NUmber = <input type="text" id="num3"></label>
+        <br>
+        <h1 id="ans"></h1>
+    </center>
+</body>
+</html>
+<script>
+    let num1 = document.getElementById("num1").value
+let num2 = document.getElementById("num2").value
+let num3 = document.getElementById("num3").value
+
+num1 = parseInt(num1)
+num2 = parseInt(num2)
+num3 = parseInt(num3)
+
+if(num1 == "" || num2 == "" || num3 == "") 
+{
+    console.log("Please Enter Number")
+    document.getElementById("ans").innerHTML = "Please Enter Number"
+}
+else
+{
+    if(num1 > num2 && num1 > num3)
+        {
+            console.log(num1 + " is Largest Number")
+            document.getElementById("ans").innerHTML = num1 + " is Largest Number"
+        }
+        else if (num2 > num1 && num2 > num3)
+        {
+            console.log(num2 + " is Largest Number")
+            document.getElementById("ans").innerHTML = num2 + " is Largest Number"
+        }
+        else
+        {
+            console.log(num3 + " is Largest Number")
+            document.getElementById("ans").innerHTML = num3 + " is Largest Number"
+        }
+}
+</script>
