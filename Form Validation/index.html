@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+    }
+    form {
+        width: 50%;
+        margin: 40px auto;
+        padding: 20px;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    label {
+        display: block;
+        margin-bottom: 10px;
+    }
+    input[type="text"], input[type="password"], input[type="email"], input[type="date"] {
+        width: 95%;
+        height:40px;
+        margin-bottom: 20px;
+        padding: 10px;
+        border: 1px solid #ccc;
+    }
+    input[type="radio"] {
+        margin-right: 10px;
+    }
+    input[type="submit"] {
+        width: 100%;
+        height: 40px;
+        background-color: #4CAF50;
+        color: #fff;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    input[type="submit"]:hover {
+        background-color: #3e8e41;
+    }
+   
+</style>
+<body>
+    <form id="form">
+        <input class="form1" type="text" placeholder="Enter Name"><br>
+        <input class="form1" type="password" id="p1" placeholder="Enter password"><br>
+        <input class="form1" type="password" id="p2" placeholder="Confirm password"><br>
+        <input class="form1" type="date" id="d1" placeholder="DOB"><br>
+        <input class="form1" type="email" placeholder="Enter Email"><br>
+        <input class="form1" type="text" placeholder="Enter Hobby"><br>
+        <input type="radio" id="r1" value="male" name="gender" placeholder="male">Male
+        <input type="radio" id="r2" value="female" name="gender" placeholder="female">Female <br>
+        <input type="submit" id="submit">
+    </form>
+</body>
+</html>
+<script>
+    
+    document.getElementById("form").addEventListener("submit",function(){
+        var fields = document.getElementsByClassName('form1');
+        for (var i = 0; i < fields.length; i++) {
+            if (fields[i].value === "") {
+                alert("Please fill all fields");
+                isValid = false;
+                break;
+            }
+        }
+        const password=document.getElementById('p1').value
+        if(password.length<=7){
+            alert("please enter atleast 8 word password")
+        }
+        const d=document.getElementById('p2').value
+        if(password != d){
+            alert("Password is not same")
+        }
+    })
+</script>
