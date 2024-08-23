@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+       //DEFAULT:default constructor initializes the object but does not perform any custom actions.
+
+       class car{
+        constructor(){
+            this.modal="B.M.W",
+            this.price=7500000
+        }
+    }
+    let add=new car();
+    console.log(add.modal);
+    console.log(add.price);
+
+    //PERAMETER:constructor with parameters allows you to initialize objects with specific values when they are created.
+
+    class person{
+        constructor(name,age){
+            this.name=name,
+            this.age=age
+        }
+        body(){
+            return console.log(`Your name is${this.name} and your age is  ${this.age}`)
+        }
+    }
+    let add1=new person("Harsh",18);
+    add1.body();
+
+    //COPY
+
+    class shope{
+        constructor(product,price){
+            this.product=product,
+            this.price=price
+        }
+        copy(){
+            return new shope (this.product,this.price)
+        }
+        output(){
+            console.log("you buy "+this.product+" price is "+this.price)
+        }
+    }
+    let bill=new shope("Dairy-Milk",500);
+    bill.output()
+
+     //CONDITION
+
+     class result{
+        constructor(sub,mark){
+            this.sub=sub || "Guest"
+            this.mark= mark >= 33 ? mark:"Fail"
+        }
+    }
+    let r=new result("Physics",80)
+    console.log(r.sub)
+    console.log(r.mark)
+
+    let r2=new result("Chemistry",28)
+    console.log(r2.sub)
+    console.log(r2.mark)
+
+    //Simple Inheritance :it have one perernt class and one child class
+    class company{
+        constructor(employee){
+            this.employee=employee
+        }
+    }
+    class barnch extends company{
+        constructor(employee,post){
+            super(employee)
+            this.post=post
+        }
+        display(){
+            return console.log(`Employee Name: ${this.employee} Post: ${this.post}`)
+        }
+    }
+    let c=new barnch("Rahul","Manager")
+    c.display()
+
+//multilevel:it's have one grand-perent class ,one perent class and one child class
+
+    class company1{
+        constructor(employee){
+            this.employee=employee
+        }
+    }
+    class barnch1 extends company1{
+        constructor(employee,post){
+            super(employee)
+            this.post=post
+        }
+        display(){
+            return console.log(`Employee Name: ${this.employee} Post: ${this.post}`)
+        }
+    }
+    class department extends barnch{
+        constructor(employee,post,deptname){
+            super(employee,post)
+            this.deptname=deptname
+        }
+        //Polymorphism: this is like a method overiding
+        display(){
+            super.display()
+            return console.log(`Emplooyee belongs to ${this.deptname}`)
+        }
+    }
+let m=new department("Jay","Manager","web")
+m.display()
+
+//hirarchical Inheritence:it have one perent class and more then one child class
+class result1{
+    constructor(p,c,m,t){
+        this.p=p
+        this.c=c
+        this.m=m
+        this.t=p+c+m
+    }
+   
+}
+class student1 extends result1{
+    constructor(p,c,m,name1){
+        super(p,c,m)
+        this.name1=name1
+    }
+    display1(){
+        console.log(`Student Name:${this.name1} Physics:${this.p},Chemistry:${this.c},Maths:${this.m},Total:${this.t}`)
+    }
+}
+
+class student2 extends result1{
+    constructor(p,c,m,name2){
+        super(p,c,m)
+        this.name2=name2
+    }
+    display2(){
+        console.log(`Student Name:${this.name2} Physics:${this.p},Chemistry:${this.c},Maths:${this.m},Total:${this.t}`)
+    }
+}
+let x=new student1(90,87,100,"Harsh")
+x.display1()
+
+let y=new student2(80,89,99,"Jay")
+y.display2()
+</script>
