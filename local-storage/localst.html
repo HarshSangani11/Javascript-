@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    localStorage.setItem("name","sumit");
+    let user = localStorage.getItem("name");
+    console.log(user);
+    localStorage.removeItem("name");
+
+    localStorage.setItem("subject1","javascript");
+    localStorage.setItem("subject2","react");
+    localStorage.setItem("subject3","nodejs");
+     localStorage.clear()
+
+    let obj = {
+        name: "Harsh"
+    }
+    localStorage.setItem("obj",JSON.stringify(obj))
+    let data = JSON.parse(localStorage.getItem("obj"))
+    console.log(data);
+</script>
