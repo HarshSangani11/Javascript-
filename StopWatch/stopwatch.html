@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -105,4 +106,113 @@ resetStopwatch.addEventListener('click', () => {
 });
     </script>
 </body>
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stopwatch</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<style>
+       body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            margin: 0;
+        }
+    .stopwatch-container {
+        text-align: center;
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+   
+}
+
+#stopwatch-screen {
+    font-size: 4em;
+            margin-bottom: 20px;
+            font-weight: bold;
+}
+
+button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 12px 24px;
+            font-size: 1.2em;
+            cursor: pointer;
+            margin: 5px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        button:active {
+            transform: scale(0.98);
+        }
+        button:focus {
+            outline: none;
+        }
+
+</style>
+<body>
+    <div class="stopwatch-container">
+        <div id="stopwatch-screen">00:00:00</div>
+        <button id="start-stopwatch">Start</button>
+        <button id="stop-stopwatch">Stop</button>
+        <button id="reset-stopwatch">Reset</button>
+    </div>
+
+    <script>
+        let stopwatchScreen = document.getElementById('stopwatch-screen');
+let startStopwatch = document.getElementById('start-stopwatch');
+let stopStopwatch = document.getElementById('stop-stopwatch');
+let resetStopwatch = document.getElementById('reset-stopwatch');
+
+let seconds = 0;
+let minutes = 0;
+let milliseconds = 0;
+let timer = null;
+
+startStopwatch.addEventListener('click', () => {
+    if (!timer) {
+        timer = setInterval(() => {
+            milliseconds++;
+            if (milliseconds >= 100) {
+                seconds++;
+                milliseconds = 0;
+            }
+            if (seconds >= 60) {
+                minutes++;
+                seconds = 0;
+            }
+            stopwatchScreen.innerText = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}:${String(milliseconds).padStart(2, '0')}`;
+        }, 10);
+    }
+});
+
+stopStopwatch.addEventListener('click', () => {
+    clearInterval(timer);
+    timer = null;  
+});
+
+resetStopwatch.addEventListener('click', () => {
+    clearInterval(timer);
+    timer = null;  
+    seconds = 0;
+    minutes = 0;
+    milliseconds = 0;
+    stopwatchScreen.innerText = '00:00:00';
+});
+    </script>
+</body>
+>>>>>>> cb973319c64b57197651e691ab2b3900e6c71514
 </html>

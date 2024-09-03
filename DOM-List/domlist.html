@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -60,4 +61,68 @@ let btn=document.getElementById("btn");
     document.getElementById("list").append(newElement);
     document.getElementById("name").value=""
  })
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f0f0f0;
+        }
+      #container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        #ul {
+            border: 2px solid red;
+            font-size: 20px;
+            color: maroon;
+            background-color: aquamarine;
+            border-radius: 8px;
+            padding: 10px;
+        }
+        #btn {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background-color: #007bff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        #btn:hover {
+            background-color: #0056b3;
+        }
+</style>
+<body>
+    <div id="container">
+        <input type="text" id="name" placeholder="Enter item">
+    <button id="btn">Add</button>
+    <div id="ul">
+        <ul id="list"></ul>
+    </div>
+</div>
+</body>
+</html>
+<script>
+let btn=document.getElementById("btn");
+ btn.addEventListener("click",()=>{
+    let newElement = document.createElement("li")
+    newElement.innerText=document.getElementById("name").value
+    document.getElementById("list").append(newElement);
+    document.getElementById("name").value=""
+ })
+>>>>>>> cb973319c64b57197651e691ab2b3900e6c71514
 </script>
