@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    #container{
+        display: flex;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+    #child{
+        width: 200px;
+        height: 200px;
+    }
+</style>
+<body>
+    <div id="title"></div>
+    <div id="container"></div>
+</body>
+</html>
+
+
+<script>
+    fetch('https://fakestoreapi.com/products')
+    .then((res)=>{
+        console.log(res);
+        return res.json()  
+    })
+    .then((result)=>{
+        console.log(result);
+        display(result)
+    })
+
+    function display(data){
+        let div = document.getElementById("container")
+        data.forEach((element)=>{
+            let divv = document.createElement("div")
+            divv.className = "child"
+            let img = document.createElement("img")
+            img.src = element.image
+
+            img.style.width= "100%"
+            img.style.height="200px"
+
+            let j =document.createElement('h4')
+            j.innerHTML = element.category
+
+            let p = document.createElement('h4')
+            p.innerHTML = element.price
+
+            divv.append(img,p,j)
+            div.appendChild(divv)
+        })
+}
+</script>

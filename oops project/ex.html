@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px;
+            box-sizing: border-box;
+        }
+        #m1 {
+            position: fixed;
+            top: 0px;
+            background-color: black;
+            height: 100%;
+            width: 100%;
+        }
+        .ms-1 {
+            display: none;
+            margin: 5% auto;
+            border-radius: 20px;
+            background-color: rgb(35, 138, 52);
+            height: 80%;
+            width: 80%;
+        }
+        h1 {
+            color: aliceblue;
+        }
+        button {
+            color: aliceblue;
+            background-color: brown;
+        }
+    </style>
+</head>
+<body>
+    <div id="m1">
+        <h1 id="head2"></h1>
+        <h1 id="head1"></h1>
+        <button id="btn">STOP</button>
+        <div  id="ms-1"> <!-- Added ID ms-1 for clarity in JS -->
+            <!-- Content for ms-1 -->
+        </div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            console.log("Document loaded successfully");
+
+            setTimeout(() => {
+                document.getElementById("head1").textContent = "This statement is printed after 3 sec.";
+            }, 3000);
+
+            let count = 0;
+            let interval = setInterval(() => {
+                count++;
+                document.getElementById("head2").textContent = count;
+            }, 1000);
+
+            let ms1 = document.getElementById("ms-1");
+            document.getElementById("btn").addEventListener("click", () => {
+                ms1.style.display = "block";
+                clearInterval(interval);
+            });
+        });
+    </script>
+</body>
+</html>

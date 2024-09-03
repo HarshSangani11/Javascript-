@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+
+    //DEFAULT
+
+        class car0{
+        constructor(){
+            this.modal="swift",
+            this.price=1000000
+        }
+    }
+    let add0=new car0();
+    console.log(add0.modal);
+    console.log(add0.price);
+
+//PERAMETER
+    class car{
+        constructor(modal,price){
+            this.modal=modal,
+            this.price=price
+        }
+        system(){
+            return console.log(`${this.modal} price is ${this.price}`)
+        }
+    }
+    let add=new car("safari",2500000);
+    add.system();
+
+    class car2{
+        constructor(modal,price){
+            this.modal=modal,
+            this.price=price
+        }
+        system(){
+            return console.log(`${this.modal} price is ${this.price}`)
+        }
+    }
+    let add2=new car2("Harrier",2000000);
+    add2.system();
+
+    class car3{
+        constructor(modal,price){
+            this.modal=modal,
+            this.price=price
+        }
+        system(){
+            return console.log(`${this.modal} price is ${this.price}`)
+        }
+    }
+    let add3=new car3("Creta",2200000);
+    add3.system();
+
+    class car4{
+        constructor(modal,price){
+            this.modal=modal,
+            this.price=price
+        }
+        system(){
+            return console.log(`${this.modal} price is ${this.price}`)
+        }
+    }
+    let add4=new car4("Sonet",1200000);
+    add4.system();
+
+    //COPY
+
+    class car5{
+        constructor(modal,price){
+            this.modal=modal,
+            this.price=price
+        }
+        copy(){
+            return console.log(`${this.modal} price is ${this.price}`)
+        }
+    }
+    let car7=new car5("B.M.W",7500000);
+    let car6=car7.copy();
+    console.log(car7.modal)
+    console.log(car7.price)
+
+    //CONDITION
+
+    class Human{
+        constructor(name,age){
+            this.name=name || "Guest"
+            this.age= age >= 0 ? age:"invalid"
+        }
+    }
+    let Human1=new Human("Harsh",20)
+    console.log(Human1.name)
+    console.log(Human1.age)
+
+    let Human2=new Human("",18)
+    console.log(Human2.name)
+    console.log(Human2.age)
+    
+</script>
