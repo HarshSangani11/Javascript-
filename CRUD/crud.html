@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form onsubmit="addData(event)">
+        <input type="text" placeholder="Enter Name" id="name">
+        <input type="text" placeholder="Enter your subject" id="subject">
+        <input type="submit">
+    </form>
+    <table border="1" width="60%">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Subject</th>
+            </tr>
+        </thead>
+        <tbody id="tbody">
+
+        </tbody>
+    </table>
+</body>
+</html>
+<script>
+  let name = document.getElementById("name");
+        let subject = document.getElementById("subject");
+
+        function addData(event){
+            event.preventDefault()
+
+            let existingData = JSON.parse(localStorage.getItem("student")) || [];
+
+            let obj = {
+                name : name.value,
+                subject : subject.value
+            }
+            existingData.push(obj)
+
+            localStorage.setItem("student",JSON.stringify(existingData))
+            name.value= ""
+            subject.value= ""
+
+        }
+</script>
