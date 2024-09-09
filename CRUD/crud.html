@@ -14,17 +14,16 @@
     <table border="1" width="60%">
         <thead>
             <tr>
+                <th>ID</th>
                 <th>Name</th>
                 <th>Subject</th>
+                <th colspan="2">Action</th>
             </tr>
         </thead>
         <tbody id="tbody">
 
         </tbody>
-    </table>
-</body>
-</html>
-<script>
+    </table><script>
   let name = document.getElementById("name");
         let subject = document.getElementById("subject");
 
@@ -34,6 +33,7 @@
             let existingData = JSON.parse(localStorage.getItem("student")) || [];
 
             let obj = {
+                id:Date.now(),
                 name : name.value,
                 subject : subject.value
             }
@@ -43,5 +43,51 @@
             name.value= ""
             subject.value= ""
 
+            getData();
         }
+        function getData(){
+            let tbody = document.getElementById("tbody")
+            tbody.innerHTML=""
+            
+            let allData = JSON.parse(localStorage.getItem("student")) || [];
+           
+            
+            
+            for(let i = 0; i<allData.length ; i++){
+                
+                let row = tbody.insertRow();
+                let cell0 = row.insertCell(0);
+                let cell1 = row.insertCell(1);
+                let cell2 = row.insertCell(2);
+                let cell3 = row.insertCell(3);
+                let cell4 = row.insertCell(4);
+
+                cell0.innerText = allData[i].id
+                cell1.innerText = allData[i].name
+                cell2.innerText = allData[i].subject
+
+                cell3.innerHTML=`<button class="deleteBtn" data-id="${allData[i].id}">Delete</button>`
+                cell4.innerHTML=`<button class="editBtn" data-id="${allData[i].id}">Edit</button>`
+            }
+
+            let deleteBtns= document.querySelectorAll(".deleteBtn");
+
+deleteBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+        let allData=JSON.parse(localStorage.getItem("student"));
+        let btnId=btn.getAttribute("data-id");
+        console.log(allData);
+        
+        let remainingData = allData.filter((data) => data.id != btnId)
+        console.log(remainingData);
+        localStorage.setItem("student",JSON.stringify(remainingData));
+        getData()
+    })
+})
+        }
+        getData();
+
+       
 </script>
+</body>
+</html>
