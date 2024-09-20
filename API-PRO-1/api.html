@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    p{
+        color: blue;
+    }
+     p::-webkit-scrollbar {
+    display: none; 
+    } 
+    h3{
+        color:aqua;
+    }
+    h5{
+        color: cornflowerblue;
+    }
+    #card {
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap; 
+            justify-content: space-between;
+            }
+
+        #card::-webkit-scrollbar {
+            display: none; 
+        }
+
+        .state-note {
+            border: 5px solid yellow;
+            border-radius: 50px 0px;
+            box-shadow: rgba(0, 0, 0, 0.4) 0px 30px 90px;
+            padding: 10px;
+            width: 45%;
+            height: 200px;
+            margin: 10px 0;
+            background-color:black;
+        }
+</style>
+<body>
+<div id="card"></div>
+</body>
+</html>
+<script>
+       async function fatchApi() {
+        let fatchData= await fetch("https://api.covidtracking.com/v1/states/info.json");
+        let response= await fatchData.json();
+        const card=document.getElementById("card")
+        response.forEach(data => {
+
+            let container=document.createElement("div")
+            container.classList.add("state-note");
+
+            let h1=document.createElement("h1");       
+            h1.innerText="State: "+data.state
+            h1.style.color="red"
+            container.append(h1)
+
+            
+            let h3=document.createElement("h3");       
+            h3.innerText="Name: "+data.name
+            container.append(h3)
+
+            let h5=document.createElement("h5");       
+            h5.innerText="Twitter: "+data.twitter
+            container.append(h5)
+
+            let note=data.notes.split(".")[0]+"."
+            let p=document.createElement("p");       
+            p.innerText="Note:- "+note
+            container.append(p)
+
+
+            card.append(container)
+
+        });
+
+        console.log(response)
+    }
+    fatchApi()
+</script>
