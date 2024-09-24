@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+input[type="text"] {
+    padding: 10px;
+    width: 70%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 10px;
+}
+
+button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #eaeaea;
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 4px;
+}
+
+li button {
+    margin-left: 10px;
+}
+
+</style>
+<body>
+    <div class="container">
+        <h1>Task Manager</h1>
+        <input type="text" placeholder="Enter a Task" id="task">
+        <button id="submit">submit</button>
+        <h1>Pending Task</h1>
+
+        <ul id="ul1"></ul>
+
+        <h1>Complete Task</h1>
+        <ul id="ul2"></ul>
+    </div>
+</body>
+</html>
+<script>
+    document.getElementById('submit').addEventListener('click',function(){
+        let task =document.getElementById('task');
+        let text =task.value.trim();
+        let ul2=document.getElementById('ul2')
+       
+        let pending=document.getElementById('ul1')
+        let li=document.createElement('li')
+        li.textContent=text
+
+        let btn=document.createElement('button')
+        btn.textContent="Complete"
+        btn.addEventListener('click', function() {
+            ul2.appendChild(li);
+            btn.remove();
+            let btn2= document.createElement('button')
+            btn2.textContent="Move to Pending"
+            btn2.addEventListener('click',function(){
+                ul1.appendChild(li)
+                li.appendChild(btn);
+                btn2.remove()
+            })
+            li.appendChild(btn2)
+         })
+
+         li.appendChild(btn);
+         
+        pending.appendChild(li)
+        task.value=""
+
+        
+ });
+
+
+</script>
