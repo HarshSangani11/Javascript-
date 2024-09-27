@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager</title>
+</head>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-image: url('https://www.shutterstock.com/image-photo/abstract-dark-blue-light-background-260nw-2488953281.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        color: #333;
+        margin: 0;
+        padding: 20px;
+    }
+
+    h1 {
+        text-align: center;
+        color: rgba(0, 0, 255, 0.558);
+    }
+
+    form {
+        max-width: 600px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color:rgba(43, 165, 226, 0.296);
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(131, 225, 246, 0.534);
+    }
+
+    form input[type="text"],
+    form input[type="date"] {
+        width: 100%;
+        padding: 8px 0;
+        margin: 10px 0;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+    }
+
+    form input[type="submit"] {
+        width: 100%;
+        padding: 10px;
+        background-color:rgba(26, 131, 212, 0.695);
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+    form input[type="submit"]:hover {
+        background-color:#0b7dda;
+    }
+
+    table {
+        width: 80%;
+        margin: 20px auto;
+        border-collapse: collapse;
+        background-color: #6b45e83b;
+    }
+
+    table th, table td {
+        padding: 12px 15px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    table th {
+        background-color:rgba(26, 131, 212, 0.695);
+        color: white;
+    }
+    table tr{
+        color: #f1f1f1;
+    }
+
+    table tr:hover {
+        background-color: #f1f1f1;
+        color:black;
+    }
+
+    button {
+        padding: 8px 12px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #45a049;
+    }
+
+    .deleteBtn {
+        background-color: #f44336;
+    }
+
+    .deleteBtn:hover {
+        background-color:transparent;
+        border: 2px solid #f44336;
+        color: #f44336;
+    }
+
+    .editBtn {
+        background-color: #2196F3;
+    }
+
+    .editBtn:hover {
+        background-color:transparent;
+        border: 2px solid #2196F3;
+        color: #2196F3;
+    }
+
+    .completeBtn {
+        background-color: #4CAF50;
+    }
+
+    .completeBtn:hover {
+        background-color:transparent;
+        border: 2px solid #45a049;
+        color: #45a049;
+    }
+
+    .pendingBtn {
+        background-color: #FFA500;
+    }
+
+    .pendingBtn:hover {
+        background-color:transparent;
+        border: 2px solid orange;
+        color: #FFA500;
+    }
+
+ 
+</style>
+
+<body>
+    <h1>Task Manager</h1>
+    <form onsubmit="addTask(event)">
+        <input type="text" placeholder="Enter Task Name" id="taskName" required>
+        <input type="text" placeholder="Enter Task Description" id="taskDesc" required>
+        <input type="date" id="dueDate" placeholder="Date" required>
+        <input type="submit" id="subBtn" value="Add Task">
+    </form>
+
+    <h1>Task List</h1>
+    <table border="1" width="80%">
+        <thead>
+            <tr>
+                <th>Task Name</th>
+                <th>Description</th>
+                <th>Due Date</th>
+                <th>Status</th>
+                <th colspan="3">Action</th>
+            </tr>
+        </thead>
+        <tbody id="tbody">
+        </tbody>
+    </table>
+
+    <script>
+        let taskName = document.getElementById("taskName");
+let taskDesc = document.getElementById("taskDesc");
+let dueDate = document.getElementById("dueDate");
+let editId = null;
+
+function addTask(event) {
+    event.preventDefault();
+
+    let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+
+    if (editId) {
+        // Edit task
+        tasks = tasks.map((task) => {
+            if (task.id == editId) {
+                return {
+                    ...task,
+                    name: taskName.value,
+                    description: taskDesc.value,
+                    dueDate: dueDate.value,
+                    status: task.status
+                };
+            }
+            return task;
+        });
+
+        editId = null;
+        document.getElementById("subBtn").value = "Add Task";
+    } else {
+        // Add new task
+        let newTask = {
+            id: Date.now(),
+            name: taskName.value,
+            description: taskDesc.value,
+            dueDate: dueDate.value,
+            status: "Pending"
+        };
+        tasks.push(newTask);
+    }
+
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+    taskName.value = "";
+    taskDesc.value = "";
+    dueDate.value = "";
+
+    renderTasks();
+}
+
+function renderTasks() {
+    let tbody = document.getElementById("tbody");
+    tbody.innerHTML = "";
+
+    let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+
+    for (let i = 0; i < tasks.length; i++) {
+        let row = tbody.insertRow();
+        row.innerHTML = `
+            <td>${tasks[i].name}</td>
+            <td>${tasks[i].description}</td>
+            <td>${tasks[i].dueDate}</td>
+            <td>${tasks[i].status}</td>
+            <td><button class="deleteBtn" data-id="${tasks[i].id}">Delete</button></td>
+            <td><button class="editBtn" data-id="${tasks[i].id}">Edit</button></td>
+            <td>
+                ${tasks[i].status === "Pending" 
+                    ? `<button class="completeBtn" data-id="${tasks[i].id}">Mark Completed</button>` 
+                    : `<button class="pendingBtn" data-id="${tasks[i].id}">Mark Pending</button>`
+                }
+            </td>
+        `;
+    }
+}
+
+// Use event delegation for better performance
+document.getElementById("tbody").addEventListener("click", function (event) {
+    let target = event.target;
+    let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+    
+    // Delete Task
+    if (target.classList.contains("deleteBtn")) {
+        let taskId = target.getAttribute("data-id");
+        tasks = tasks.filter((task) => task.id != taskId);
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+        renderTasks();
+    }
+
+    // Edit Task
+    if (target.classList.contains("editBtn")) {
+        let taskId = target.getAttribute("data-id");
+        let taskToEdit = tasks.find((task) => task.id == taskId);
+
+        taskName.value = taskToEdit.name;
+        taskDesc.value = taskToEdit.description;
+        dueDate.value = taskToEdit.dueDate;
+
+        editId = taskId;
+        document.getElementById("subBtn").value = "Update Task";
+    }
+
+    // Mark as Complete
+    if (target.classList.contains("completeBtn")) {
+        let taskId = target.getAttribute("data-id");
+        tasks = tasks.map((task) => {
+            if (task.id == taskId) {
+                return { ...task, status: "Completed" };
+            }
+            return task;
+        });
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+        renderTasks();
+    }
+
+    // Mark as Pending
+    if (target.classList.contains("pendingBtn")) {
+        let taskId = target.getAttribute("data-id");
+        tasks = tasks.map((task) => {
+            if (task.id == taskId) {
+                return { ...task, status: "Pending" };
+            }
+            return task;
+        });
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+        renderTasks();
+    }
+});
+
+renderTasks();
+
+    </script>
+</body>
+
+</html>
